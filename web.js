@@ -35,7 +35,7 @@ app.get('/api/list', function(request, response) {
 });
 
 app.put('/api/add', function(request, response) {
-  response.send(200, 'Success');
+  response.send('Success');
 });
 
 var port = process.env.PORT || 5000;
