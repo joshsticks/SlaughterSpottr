@@ -3,6 +3,12 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 app.get('/api/count', function(request, response) {
   response.send({count:6});
 });
