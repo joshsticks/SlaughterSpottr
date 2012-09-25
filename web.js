@@ -9,7 +9,8 @@ app.get('/api/count', function(request, response) {
 
 app.get('/api/list', function(request, response) {
   response.send({
-    1: { lat:37.546551,lon:-77.451382 }
+    1: { lat:37.546551, lon:-77.451382, date: new Date().toString() },
+    2: { lat:37.545866, lon:-77.456539, date: new Date().toString() }
   });
 });
 
