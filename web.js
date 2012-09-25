@@ -3,10 +3,7 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 app.get('/api/count', function(request, response) {
-  var res = {
-    count:12;
-  };
-  response.send(res);
+  response.send({count:12});
 });
 
 var port = process.env.PORT || 5000;
