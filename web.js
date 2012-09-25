@@ -22,7 +22,7 @@ app.configure(function () {
 });
 
 app.get('/api/count', function(request, response) {
-  response.send({count:6});
+  response.send({count:4});
 });
 
 app.get('/api/list', function(request, response) {
@@ -35,7 +35,12 @@ app.get('/api/list', function(request, response) {
 });
 
 app.put('/api/add', function(request, response) {
-  response.send('added');
+  if(request.query["location"]) {
+    response.send(200, 'Success - ' + request.query["location"]);
+  }
+  else {
+    response.send(400, "Invalid Request");
+  }
 });
 
 var port = process.env.PORT || 5000;
