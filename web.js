@@ -35,8 +35,8 @@ app.get('/api/list', function(request, response) {
 });
 
 app.put('/api/add', function(request, response) {
-  if(request.query["location"]) {
-    response.send(200, 'Success - ' + request.query["location"]);
+  if(request.query.location) {
+    response.send(200, 'Success - ' + request.query.location);
   }
   else {
     response.send(400, "Invalid Request");
