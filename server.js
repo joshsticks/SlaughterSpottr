@@ -31,8 +31,8 @@ handler = function(req, res) {
 };
  
 host = '127.0.0.1';
-port = 8080;
- 
+port = process.env.PORT || 5000;
+
 http.createServer(handler).listen(port, host);
  
 console.log('Server running at http://' + host + ':' + port + '/');
