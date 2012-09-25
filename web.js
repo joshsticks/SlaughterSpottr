@@ -35,7 +35,6 @@ app.get('/api/list', function(request, response) {
 });
 
 app.put('/api/add', function(request, response) {
-  console.log(request);
   console.log(request.query);
   if(request.query.location) {
     response.send(200, 'Success - ' + request.query.location);
