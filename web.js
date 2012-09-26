@@ -46,7 +46,23 @@ app.get('/api/list', function(request, response) {
 });
 
 app.put('/api/add', function(request, response) {
-  console.log(request.query)
+  if(request.query && request.query.location) {
+    values = request.query.location.split(",");
+    if(values.length == 2) {
+      lat = values[0];
+      lon = values[1];
+      d = new Date();
+      today = d.getFullYear() + '-' + d.getMonth + '-' + d.getDate();
+      insert = "INSERT INTO locations VALUES ("+ lat +","+ lon +","+ today +")";
+      console.log(insert);
+    }
+    else {
+      response.send(400, 'Bad Request');
+    }
+  }
+  else {
+    response.send(400, 'Bad Request');
+  }
 });
 
 var port = process.env.PORT || 5000;
