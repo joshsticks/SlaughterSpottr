@@ -39,10 +39,11 @@ app.get('/api/count', function(request, response) {
 });
 
 app.get('/api/list', function(request, response) {
-  var query = client.query('SELECT * FROM locations');
-  query.on('end', function(result) {
+  var query = client.query('SELECT * FROM locations', function(err, result) {
+    console.log(result);
     response.send(200, result);
   });
+
 
   // response.send({
   //   1: { lat:37.546551, lon:-77.451382, date: '09/24/2012' },
