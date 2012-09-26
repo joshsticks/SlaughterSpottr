@@ -33,7 +33,10 @@ app.configure(function () {
 });
 
 app.get('/api/count', function(request, response) {
-  response.send({count:4});
+  var query = client.query('SELECT COUNT(*) FROM locations');
+  query.on('row', function(result) {
+    response.send(result);
+  });
 });
 
 app.get('/api/list', function(request, response) {
