@@ -53,7 +53,7 @@ app.put('/api/add', function(request, response) {
       lon = values[1];
       d = new Date();
       today = '' + d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
-      insert = "INSERT INTO locations VALUES ("+ lat +","+ lon +","+ today +")";
+      insert = "INSERT INTO locations VALUES ('"+ lat +"','"+ lon + "','" + today + "')";
       console.log(insert);      
       var query = client.query(insert);
       response.send(200);
