@@ -35,14 +35,14 @@ app.configure(function () {
 app.get('/api/count', function(request, response) {
   var query = client.query('SELECT COUNT(*) FROM locations');
   query.on('row', function(result) {
-    response.send(result);
+    response.send(200, result);
   });
 });
 
 app.get('/api/list', function(request, response) {
   var query = client.query('SELECT * FROM locations');
   query.on('row', function(result) {
-    response.send(result);
+    response.send(200, result);
   });
 
   // response.send({
