@@ -3,13 +3,6 @@ var pg = require('pg');
 
 var client = new pg.Client('postgres://jzjnyhhuadkjih:nFfX92G0Vo5oQTnoXThkaT9MKV@ec2-54-243-228-4.compute-1.amazonaws.com:5432/d2le9eigheli01');
 client.connect();
-var query2 = client.query("SELECT * FROM locations");
-query2.on('row', function(result) {
- console.log(result);
-});
-
-
-//query.on('end', function() { client.end(); });
 
 var app = express.createServer(express.logger());
 
@@ -40,17 +33,13 @@ app.get('/api/count', function(request, response) {
 
 app.get('/api/list', function(request, response) {
   var query = client.query('SELECT * FROM locations', function(err, result) {
-    console.log(result.rows);
-    response.send(200, result.rows);
+    if(result && result.rows) {
+      response.send(200, result.rows); 
+    }
+    else { 
+      response.send(500, 'Internal Server Error');
+    }
   });
-
-
-  // response.send({
-  //   1: { lat:37.546551, lon:-77.451382, date: '09/24/2012' },
-  //   2: { lat:37.545866, lon:-77.456539, date: '09/21/2012' },
-  //   3: { lat:40.052939, lon:-75.129876, date: '09/02/2012' },
-  //   4: { lat:37.677435, lon:-77.549744, date: '09/14/2012' }
-  // });
 });
 
 app.put('/api/add', function(request, response) {
