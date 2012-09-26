@@ -54,7 +54,9 @@ app.put('/api/add', function(request, response) {
       d = new Date();
       today = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
       insert = "INSERT INTO locations VALUES ("+ lat +","+ lon +","+ today +")";
-      console.log(insert);
+      var query = client.query(insert);
+      console.log('inserted row');
+      response.send(200);
     }
     else {
       response.send(400, 'Bad Request');
