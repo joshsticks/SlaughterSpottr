@@ -3,8 +3,7 @@ var pg = require('pg');
 
 var client = new pg.Client('postgres://jzjnyhhuadkjih:nFfX92G0Vo5oQTnoXThkaT9MKV@ec2-54-243-228-4.compute-1.amazonaws.com:5432/d2le9eigheli01');
 client.connect();
-var query2 = client.query("DELETE FROM locations WHERE lat='123'");
-
+var query2 = client.query("SELECT * FROM locations");
 query2.on('row', function(result) {
  console.log(result);
 });
@@ -41,7 +40,7 @@ app.get('/api/count', function(request, response) {
 
 app.get('/api/list', function(request, response) {
   var query = client.query('SELECT * FROM locations');
-  query.on('row', function(result) {
+  query.on('end', function(result) {
     response.send(200, result);
   });
 
