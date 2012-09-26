@@ -1,14 +1,10 @@
 var express = require('express');
 var pg = require('pg');
 
-pg.connect('postgres://jzjnyhhuadkjih:nFfX92G0Vo5oQTnoXThkaT9MKV@ec2-54-243-228-4.compute-1.amazonaws.com:5432/d2le9eigheli01', 
-  function(err, client) {
-    var query = client.query('SELECT * FROM your_table');
-
-    query.on('row', function(row) {
-      console.log(JSON.stringify(row));
-    });
-});
+var client = new pg.Client('postgres://jzjnyhhuadkjih:nFfX92G0Vo5oQTnoXThkaT9MKV@ec2-54-243-228-4.compute-1.amazonaws.com:5432/d2le9eigheli01');
+client.connect();
+var query = client.query('CREATE TABLE locations (string string date)');
+query.on('end', function() { client.end(); });
 
 var app = express.createServer(express.logger());
 
