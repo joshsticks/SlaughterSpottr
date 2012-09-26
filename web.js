@@ -1,7 +1,7 @@
 var express = require('express');
 var pg = require('pg');
 
-console.log('db url: ' + process.env.DATABASE_URL);
+console.log('db url: ' + process.env.HEROKU_POSTGRESQL_COPPER);
 
 var app = express.createServer(express.logger());
 
