@@ -3,7 +3,7 @@ var pg = require('pg');
 
 var client = new pg.Client('postgres://jzjnyhhuadkjih:nFfX92G0Vo5oQTnoXThkaT9MKV@ec2-54-243-228-4.compute-1.amazonaws.com:5432/d2le9eigheli01');
 client.connect();
-var query2 = client.query('SELECT * FROM locations');
+var query2 = client.query("DELETE FROM locations WHERE lat='123'");
 
 query2.on('row', function(result) {
  console.log(result);
