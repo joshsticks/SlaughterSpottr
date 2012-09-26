@@ -52,10 +52,10 @@ app.put('/api/add', function(request, response) {
       lat = values[0];
       lon = values[1];
       d = new Date();
-      today = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+      today = '' + d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
       insert = "INSERT INTO locations VALUES ("+ lat +","+ lon +","+ today +")";
+      console.log(insert);      
       var query = client.query(insert);
-      console.log('inserted row');
       response.send(200);
     }
     else {
