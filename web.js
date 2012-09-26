@@ -37,6 +37,11 @@ app.get('/api/count', function(request, response) {
 });
 
 app.get('/api/list', function(request, response) {
+  var query = client.query('SELECT * FROM locations');
+  query.on('row', function(result) {
+   console.log(result);
+  });
+
   response.send({
     1: { lat:37.546551, lon:-77.451382, date: '09/24/2012' },
     2: { lat:37.545866, lon:-77.456539, date: '09/21/2012' },
@@ -48,7 +53,7 @@ app.get('/api/list', function(request, response) {
 app.put('/api/add', function(request, response) {
   if(request.query && request.query.location) {
     values = request.query.location.split(",");
-    if(values.length == 2) {
+    if(values.length == 2 && parseFloat(values[0]) && parseFloat(values[1])) {
       lat = values[0];
       lon = values[1];
       d = new Date();
